@@ -12,7 +12,7 @@ router = APIRouter(
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = db.query(models.User).filter(models.User.username == user.username).first()
     if db_user:
-        raise HTTPException(status_code=400, detail="Username already registered")
+        raise HTTPException(status_code=400, detail="Nome de usuário existente.")
     new_user = models.User(**user.dict())
     db.add(new_user)
     db.commit()
