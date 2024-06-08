@@ -1,9 +1,12 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:lOjcBkiBxFScKwLlwnHCmvavzZxatRvO@monorail.proxy.rlwy.net:30934/railway"
-# Substitua `username`, `password`, e `dbname` com suas credenciais e nome do banco de dados
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not SQLALCHEMY_DATABASE_URL:
+    raise ValueError("DATABASE_URL não está definida nas variáveis de ambiente")
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
