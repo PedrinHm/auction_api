@@ -9,6 +9,10 @@ app.include_router(items.router)
 app.include_router(bids.router)
 app.include_router(users.router)
 
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to Meme Generator API"}
+
 if __name__ == "__main__":
     create_tables()
     import uvicorn
