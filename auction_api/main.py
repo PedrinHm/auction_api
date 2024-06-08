@@ -15,14 +15,10 @@ def read_root():
 
 if __name__ == "__main__":
     create_tables()
-    import uvicorn
-    uvicorn.run("auction_api.main:app", host="0.0.0.0", port=8000)  
+    init_db()
     
 def init_db():
     models.Base.metadata.create_all(bind=engine)
-
-if __name__ == "__main__":
-    init_db()
 
 def create_tables():
     Base.metadata.create_all(bind=engine)
