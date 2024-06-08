@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from .database import Base
 from datetime import datetime
+from fastapi.middleware.cors import CORSMiddleware
 
 class User(Base):
     __tablename__ = 'users'
