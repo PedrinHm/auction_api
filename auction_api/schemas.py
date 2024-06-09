@@ -14,7 +14,7 @@ class Bid(BidBase):
     user_id: int
     item_id: int
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ItemBase(BaseModel):
     title: str
@@ -28,7 +28,7 @@ class Item(ItemBase):
     id: int
     bids: List[Bid] = []
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class UserBase(BaseModel):
     username: str
@@ -40,4 +40,4 @@ class User(UserBase):
     id: int
     bids: List[Bid] = []
     class Config:
-        orm_mode = True
+        from_attributes = True
