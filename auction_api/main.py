@@ -13,12 +13,12 @@ app.include_router(users.router)
 def read_root():
     return {"message": "Welcome to API"}
 
-if __name__ == "__main__":
-    create_tables()
-    init_db()
-    
+def create_tables():
+    Base.metadata.create_all(bind=engine)
+
 def init_db():
     models.Base.metadata.create_all(bind=engine)
 
-def create_tables():
-    Base.metadata.create_all(bind=engine)
+if __name__ == "__main__":
+    create_tables()
+    init_db()
