@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from auction_api.routers import items, bids, users
+from app.routers import items, bids, users
 from .database import Base, engine
 from . import models
 import logging

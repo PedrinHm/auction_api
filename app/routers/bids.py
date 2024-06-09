@@ -29,3 +29,4 @@ def create_bid(bid: schemas.BidCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_bid)
     return db_bid
+
