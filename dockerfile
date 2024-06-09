@@ -11,10 +11,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar o diretório backend para o diretório de trabalho no container
-COPY ./backend .
+COPY ./auction_api .
 
 # Informar que o container está escutando na porta 8000
-EXPOSE 8000
+EXPOSE 5000
 
 # Comando para executar a aplicação usando uvicorn
 # Ajuste o caminho do módulo FastAPI de acordo com a localização e nome do arquivo
