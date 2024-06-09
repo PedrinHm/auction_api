@@ -3,6 +3,7 @@ from auction_api.routers import items, bids, users
 from .database import Base, engine
 from . import models
 import logging
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
