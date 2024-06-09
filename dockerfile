@@ -18,4 +18,4 @@ EXPOSE 8000
 
 # Comando para executar a aplicação usando uvicorn
 # Ajuste o caminho do módulo FastAPI de acordo com a localização e nome do arquivo
-CMD ["uvicorn", "auction_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "auction_api.main:app", "--host", "0.0.0.0", "--port", "5000"]
