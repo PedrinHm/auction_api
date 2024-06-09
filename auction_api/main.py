@@ -29,3 +29,6 @@ def init_db():
 if __name__ == "__main__":
     create_tables()
     init_db()
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
