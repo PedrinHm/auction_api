@@ -1,23 +1,42 @@
-# Análise de um exemplo de arquivo main.py para identificar problemas potenciais.
-
-# Importando as bibliotecas e módulos necessários
 from fastapi import FastAPI
-from .routers import items, bids, users
+from auction_api.routers import items, bids, users
+from .database import Base, engine
+from . import models
+import logging
 
-# Criando uma instância do FastAPI
 app = FastAPI()
 
-# Incluindo os roteadores
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite todas as origens
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos os métodos
+    allow_headers=["*"]   # Permite todos os cabeçalhos
+)
+
 app.include_router(items.router)
 app.include_router(bids.router)
 app.include_router(users.router)
 
-# Definição da rota raiz
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to the API"}
+    return {"message": "Welcome to API"}
 
-# Verificação de inicialização direta para execução local
+logging.basicConfig(level=logging.INFO)
+
+def create_tables():
+    logging.info("Creating tables...")
+    Base.metadata.create_all(bind=engine)
+    logging.info("Tables created successfully.")
+
+def init_db():
+    logging.info("Initializing database...")
+    models.Base.metadata.create_all(bind=engine)
+    logging.info("Database initialized successfully.")
+
 if __name__ == "__main__":
+    create_tables()
+    init_db()
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
